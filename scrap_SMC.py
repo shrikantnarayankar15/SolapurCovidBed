@@ -127,13 +127,15 @@ if __name__ == '__main__':
     my_expander = st.beta_expander(label='Covid And Vaccination Details')
     
     col5, col6 = my_expander.beta_columns(2)
+    col5.subheader('Solapur Covid Details')
+    col5.dataframe(solapur.T, width=400)
+
     vaccinated = districtVaccineDetails()
     solapur = vaccinated[vaccinated['District']=='Solapur']
     data1=solapur.iloc[:,-10:].values[0]
     data2=vaccinated.iloc[0].values[-10:]
     final_data = pd.Series(index=data2, data=data1).rename('Solapur Data')
 
-    col5.subheader('Solapur Covid Details')
-    col5.dataframe(solapur.T, width=400)
+    
     col6.subheader('Vaccinatation Details')
     col6.dataframe(final_data.T)
