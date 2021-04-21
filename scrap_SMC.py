@@ -4,6 +4,12 @@ import numpy as np
 import streamlit as st
 import pydeck as pdk
 st.set_page_config(layout='wide')
+
+@st.cache
+def dataScrap():
+    with open('solapurMNC.txt', 'rb') as f:
+        return f.read()
+
 class scrapSMC:
     
     def __init__(self, site_address):
@@ -50,12 +56,7 @@ class scrapSMC:
 
     
     def getTextData(self, address):
-        files = None
-        try:
-            with open('solapurMNC.txt', 'rb') as f:
-                return f.read()
-        except:
-            pass
+        return dataScrap()
 
     def CreateDataFrame(self):
         rows = self.getAllRowsOfTable()
@@ -84,6 +85,11 @@ def district():
     distrinctCases = pd.read_csv('districts.csv')
     return distrinctCases
 
+@st.cache
+def districtVaccineDetails():
+    vaccinated = pd.read_csv('cowin_vaccine_data_districtwise.csv')
+    return vaccinated
+
 if __name__ == '__main__':
     url = 'http://117.247.89.137:85/'
 
@@ -103,7 +109,6 @@ if __name__ == '__main__':
     
     col1.subheader('Hospital Wise Beds Availability of Vacant Beds (Click Column to sort)')
     col1.dataframe(availableBeds)
-
     
     distrinctCases = district()
     solapur = distrinctCases[distrinctCases['District']=='Solapur']
@@ -122,7 +127,7 @@ if __name__ == '__main__':
     my_expander = st.beta_expander(label='Covid And Vaccination Details')
     
     col5, col6 = my_expander.beta_columns(2)
-    vaccinated = pd.read_csv('cowin_vaccine_data_districtwise.csv')
+    vaccinated = districtVaccineDetails()
     solapur = vaccinated[vaccinated['District']=='Solapur']
     data1=solapur.iloc[:,-10:].values[0]
     data2=vaccinated.iloc[0].values[-10:]
@@ -132,6 +137,3 @@ if __name__ == '__main__':
     col5.dataframe(solapur.T, width=400)
     col6.subheader('Vaccinatation Details')
     col6.dataframe(final_data.T)
-    
-
-    
