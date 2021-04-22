@@ -6,13 +6,13 @@ import numpy as np
 from config import districtLink, districtVaccineDetailsLink, style, urlScrap
 st.set_page_config(layout='wide')
 
-@st.cache
+@st.cache(ttl=60*60*24)
 def district(districtLink):
     print("Downloading district")
     distrinctCases = pd.read_csv('https://api.covid19india.org/csv/latest/district_wise.csv')
     return distrinctCases
 
-@st.cache
+@st.cache(ttl=60*60*24)
 def districtVaccineDetails(districtVaccineDetailsLink):
     print("Downloading vaccine")
     vaccinated = pd.read_csv(districtVaccineDetailsLink)
