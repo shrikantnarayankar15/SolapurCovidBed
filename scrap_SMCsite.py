@@ -5,7 +5,7 @@ import streamlit as st
 from config import urlAWS
 from urllib.request import urlopen
 
-@st.cache
+@st.cache(ttl=60*2)
 def dataScrap():
     data = urlopen(urlAWS).read().decode('utf-8')
     return data
