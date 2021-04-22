@@ -9,3 +9,5 @@ Streamlit app is hosted on heroku. We scrap the data every 2 minute from Solapur
 Hosted On:
 Heroku: https://solapurcovid.herokuapp.com/<br>
 Streamlit : https://share.streamlit.io/shrikantnarayankar15/solapurcovidbed/main/main.py
+
+Note: Downloaddat.py and serveFile.py are at hosted AWS
