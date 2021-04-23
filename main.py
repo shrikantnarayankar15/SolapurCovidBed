@@ -4,7 +4,7 @@ import pydeck as pdk
 import pandas as pd
 import numpy as np
 from config import districtLink, districtVaccineDetailsLink, style, urlScrap
-st.set_page_config(layout='wide')
+st.set_page_config(page_title='Solapur Vacant Beds', page_icon='hospitalicon.png', layout='wide')
 
 @st.cache(ttl=60*60*24)
 def district(districtLink):
