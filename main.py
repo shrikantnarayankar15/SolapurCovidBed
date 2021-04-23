@@ -33,7 +33,6 @@ if __name__ == '__main__':
     availableBeds.columns = columns
     
     totalVacantBeds = availableBeds['BEDS'].sum(axis=0)
-    availableBeds = availableBeds.style.background_gradient(cmap='RdPu', low=.5, high=0).highlight_null('red')
     
     st.title('Bed Availability Data for Solapur.   (Available: '+str(totalVacantBeds)+')')
     st.text("")
@@ -46,8 +45,9 @@ if __name__ == '__main__':
     
     #first row ui
     col1, col2 = st.beta_columns(2)
-
+    
     #display first column
+    availableBeds = availableBeds.style.background_gradient(cmap='RdPu', low=.5, high=0).highlight_null('red')
     col1.subheader('Hospital Wise Beds Availability of Vacant Beds (Click Column to sort)')
     col1.text("")
     col1.dataframe(availableBeds)
