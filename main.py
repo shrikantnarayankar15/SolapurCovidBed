@@ -19,7 +19,9 @@ def districtVaccineDetails(districtVaccineDetailsLink):
     return vaccinated
 
 if __name__ == '__main__':
+    import streamlit_analytics
     
+    streamlit_analytics.start_tracking()
     #store and get scrapped data
     smc = scrapSMC(urlScrap)
 
@@ -89,5 +91,5 @@ if __name__ == '__main__':
     col4.dataframe(final_data.T)
     
     st.markdown(style, unsafe_allow_html=True)
-    
+    streamlit_analytics.stop_tracking()
     
