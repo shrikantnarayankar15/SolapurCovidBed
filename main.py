@@ -36,6 +36,13 @@ if __name__ == '__main__':
     availableBeds = availableBeds.style.background_gradient(cmap='RdPu', low=.5, high=0).highlight_null('red')
     
     st.title('Bed Availability Data for Solapur.   (Available: '+str(totalVacantBeds)+')')
+    st.text("")
+
+    #Option to select hospital
+    hospitalFind = st.beta_expander(label='Select Hospital (Click Here)')
+    selectedHospitals = hospitalFind.multiselect("Enter Hospital Name:", options=list(availableBeds['HOSPITAL NAME'].values))
+    print(selectedHospitals)
+    hospitalFind.dataframe(availableBeds[availableBeds['HOSPITAL NAME'].isin(selectedHospitals)])
     
     #first row ui
     col1, col2 = st.beta_columns(2)
