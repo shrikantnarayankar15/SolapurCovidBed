@@ -3,10 +3,12 @@ import json
 import pandas as pd
 import streamlit as st
 from collections import defaultdict
+import datetime
 
 @st.cache(ttl=30*60)
 def jsonDataVaccine():
-    payload = {'district_id':375,'date':'02-05-2021'}
+    dateString = datetime.date.today().strftime('%d-%m-%Y')
+    payload = {'district_id':375,'date':dateString}
     url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict'
     r = requests.get(url, payload)
     cont = r.content
