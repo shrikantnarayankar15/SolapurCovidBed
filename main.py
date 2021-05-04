@@ -25,42 +25,42 @@ if __name__ == '__main__':
     streamlit_analytics.start_tracking()
     
     # Updated Vaccine Page
-    data18, data45 = getVaccine1845()
+#     data18, data45 = getVaccine1845()
     
-    if data18.shape[0] == 0 and data45.shape[0] ==0:
-        st.title('No Vaccine Available for Above 18 and 45(7 days Data)')
-        st.text("")
-    elif data18.shape[0] == 0:
-        st.title('Vaccine Available for above 45 (7 days Data)')
-        st.text("")
-    elif data45.shape[0] == 0:
-        st.title('Vaccine Available for above 18(7 days Data)')
-        st.text("")
-    else:
-        st.title('Above 18 and 45 Vaccine are available (7 days Data)')
-        st.text("")
+#     if data18.shape[0] == 0 and data45.shape[0] ==0:
+#         st.title('No Vaccine Available for Above 18 and 45(7 days Data)')
+#         st.text("")
+#     elif data18.shape[0] == 0:
+#         st.title('Vaccine Available for above 45 (7 days Data)')
+#         st.text("")
+#     elif data45.shape[0] == 0:
+#         st.title('Vaccine Available for above 18(7 days Data)')
+#         st.text("")
+#     else:
+#         st.title('Above 18 and 45 Vaccine are available (7 days Data)')
+#         st.text("")
 
-    #Option to select Age Group and hospital
-    vaccineAvailable = st.beta_expander(label='For Vaccine Details (Click Here)')
-    col1, col2, col3 = vaccineAvailable.beta_columns(3)
-    selectAgeGroup = col1.selectbox("Select Age Group", ('Above 45','Above 18'))
-    values = None
-    pinValues = None
-    if selectAgeGroup == 'Above 45':
-        values = data45['center'].values
-        pinValues = data45['pincode'].values
-    else:
-        values = data18['center'].values
-        pinValues = data18['pincode'].values
-    selectHospital = col3.multiselect("Enter Hospital Name:", options=list(values))
-    selectedPins = col2.selectbox("Enter Pincode:", options=list(pinValues))
-    selectedData = data45 if selectAgeGroup == 'Above 45' else data18
-    if selectHospital:
-        vaccineAvailable.write(selectedData[selectedData['center'].isin(selectHospital)])
-    elif selectedPins:
-        vaccineAvailable.write(selectedData[selectedData['pincode']==selectedPins])
-    else:
-        vaccineAvailable.write(selectedData)
+#     #Option to select Age Group and hospital
+#     vaccineAvailable = st.beta_expander(label='For Vaccine Details (Click Here)')
+#     col1, col2, col3 = vaccineAvailable.beta_columns(3)
+#     selectAgeGroup = col1.selectbox("Select Age Group", ('Above 45','Above 18'))
+#     values = None
+#     pinValues = None
+#     if selectAgeGroup == 'Above 45':
+#         values = data45['center'].values
+#         pinValues = data45['pincode'].values
+#     else:
+#         values = data18['center'].values
+#         pinValues = data18['pincode'].values
+#     selectHospital = col3.multiselect("Enter Hospital Name:", options=list(values))
+#     selectedPins = col2.selectbox("Enter Pincode:", options=list(pinValues))
+#     selectedData = data45 if selectAgeGroup == 'Above 45' else data18
+#     if selectHospital:
+#         vaccineAvailable.write(selectedData[selectedData['center'].isin(selectHospital)])
+#     elif selectedPins:
+#         vaccineAvailable.write(selectedData[selectedData['pincode']==selectedPins])
+#     else:
+#         vaccineAvailable.write(selectedData)
     # vaccineAvailable.write(data45 if selectAgeGroup == 'Above 45' else data18)
     
     #store and get scrapped data
