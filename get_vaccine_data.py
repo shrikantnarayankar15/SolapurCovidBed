@@ -7,14 +7,13 @@ import datetime
 
 @st.cache(ttl=30*60)
 def jsonDataVaccine():
-#     dateString = datetime.date.today().strftime('%d-%m-%Y')
-    dateString = '04-05-2021'
+    dateString = datetime.date.today().strftime("%d-%m-%Y")
     payload = {'district_id':375,'date':dateString}
     url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict'
+    
     data = requests.get(url, payload)
-    print(data.content)
-    data = data.json()
-    print(data)
+    data = data.content.decode('utf-8')
+    data=json.loads(data)
     return data
 
 def getVaccine1845():
