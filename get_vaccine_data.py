@@ -10,11 +10,8 @@ def jsonDataVaccine():
     dateString = datetime.date.today().strftime('%d-%m-%Y')
     payload = {'district_id':375,'date':dateString}
     url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict'
-    r = requests.get(url, payload)
-    cont = r.content
-    data = json.loads(cont)
+    data = requests.get(url, payload).json()
     return data
-
 
 def getVaccine1845():
     data45 = []
