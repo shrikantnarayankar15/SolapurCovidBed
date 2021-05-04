@@ -40,6 +40,6 @@ def getVaccine1845():
         data45.append(row45)
         data18.append(row18)
 
-    clearedData18 = pd.DataFrame(data18).dropna(thresh=7)
-    clearedData45 = pd.DataFrame(data45).dropna(thresh=7)
+    clearedData18 = pd.DataFrame(data18).dropna(thresh=4)
+    clearedData45 = pd.DataFrame(data45).dropna(thresh=4)
     return clearedData18, clearedData45
