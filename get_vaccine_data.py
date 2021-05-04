@@ -11,7 +11,10 @@ def jsonDataVaccine():
     dateString = '04-05-2021'
     payload = {'district_id':375,'date':dateString}
     url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict'
-    data = requests.get(url, payload).json()
+    data = requests.get(url, payload)
+    print(data)
+    data = data.json()
+    print(data)
     return data
 
 def getVaccine1845():
